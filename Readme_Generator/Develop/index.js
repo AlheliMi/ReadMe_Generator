@@ -40,9 +40,10 @@ const questions = [
         message: "Do your Project have the contributing parties?"
     },
     {
-        type: "input",
+        type: "list",
         name: "licence",
-        message: "Do you have a licence or your badge link? Please provide "
+        message: "Do yo want to include a license?",
+        choices: ["MIT", "APACHE 2.0", "GPL v3, BSD 3", "None"]
     },
     {
         type: "input",
@@ -97,6 +98,28 @@ function init() {
 
 init();
 
+
+function writeToFile(fileName, data) {
+    fs.writeFile(fileName, data, "utf8", function(err){
+        if(err) {
+            throw err;
+        }
+        console.log("Now you have a README file :)")
+    })
+}
+
+async function init() {
+    try {
+        const userAnswers = await promptUserInfo();
+        generateMarkdown(userAnswers);
+        writeToFile("README.md", generateMarkdown(userAnswers));
+        console.log("SUCCESS!");
+    } catch(err) {
+        console.log(err);
+    }
+};
+
+init();
 // function to write README file
 /* function writeToFile(fileName, data) {
 } */
