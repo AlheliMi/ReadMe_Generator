@@ -5,6 +5,8 @@ function generateMarkdown(data) {
 
 ## Description 
 ${data.description}
+
+
 ## Table of contents
 - [Description](#Description)
 - [Installation](#Installation)
@@ -21,8 +23,8 @@ ${data.badge}
 ## Visuals
   ![${data.title}](${data.visuals})
   
-## Installation
-_To install necessary depenvies, you should run the following command:_
+## Installation e Instructions
+_To install necessary dependencies, you should run the following command:_
   > ${data.installation}
 
 ## Usage
@@ -35,21 +37,18 @@ ${data.contributing}
 ${data.licence}
 
 ## Status
- The status of the porject at the moment is:
+ The status of the porject at the moment:
 ${data.status}
+
+---
 
 ## Repository
 - [Project Repo](${data.repo})
 
 ## Questios, Coments, Sugestions
-If you have any questios about the repo, you can open an issue or contact directly to me at ${data.email}. Or at gitHub.
+If you have any questios about the repo, you can open an issue or contact directly to me at ${data.email}. Or at gitHub ${data.username}.
 
----
-## GitHub
-![Image of me](${githubInfo.githubImage})
-- ${githubInfo.name}
-- [GitHub Profile](${githubInfo.profile})
-- <${githubInfo.email}>
+
 `;
 }
 

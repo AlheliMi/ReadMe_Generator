@@ -1,6 +1,5 @@
 const inquirer = require("inquirer");
 const fs = require('fs');
-const axios = require("axios");
 const generate = require('./utils/generateMarkdown');
 
 const questions = [
@@ -19,6 +18,7 @@ const questions = [
         name: "badge",
         message: "Do you have a badges links? Please provide them if that you want"
     },
+
     {
         type: "input",
         name: "visuals",
@@ -27,7 +27,7 @@ const questions = [
     {
         type: "input",
         name: "installation",
-        message: "Provide the installation instructions"
+        message: "Provide the installation instructions for the development of your app"
     },
     {
         type: "input",
@@ -67,30 +67,17 @@ const questions = [
     },   
 ];
 
-inquirer
-    .prompt(questions)
-    .then(function(data){
-        const queryUrl = `https://api.github.com/users/${data.username}`;
-
-        axios.get(queryUrl).then(function(res) {
-            
-            const githubInfo = {
-                githubImage: res.data.avatar_url,
-                email: res.data.email,
-                profile: res.data.html_url,
-                name: res.data.name
-            };
-            
-          fs.writeFile("README.md", generate(data, githubInfo), function(err) {
+inquirer.prompt(questions).then(function(data){
+/*         const queryUrl = `https://api.github.com/users/${data.username}` */;
+          fs.writeFile("README.md", generate(data), function(err) {
             if (err) {
               throw err;
             };
     
-            console.log("New README file now created with success!");
+            console.log("New README file is now created with Success!");
           });
         });
 
-});
 
 function init() {
 
@@ -98,7 +85,7 @@ function init() {
 
 init();
 
-
+/* 
 function writeToFile(fileName, data) {
     fs.writeFile(fileName, data, "utf8", function(err){
         if(err) {
@@ -113,13 +100,13 @@ async function init() {
         const userAnswers = await promptUserInfo();
         generateMarkdown(userAnswers);
         writeToFile("README.md", generateMarkdown(userAnswers));
-        console.log("SUCCESS!");
+        console.log("SUCCESS your README file is now created!");
     } catch(err) {
         console.log(err);
     }
 };
 
-init();
+init(); */
 // function to write README file
 /* function writeToFile(fileName, data) {
 } */
